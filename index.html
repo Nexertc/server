@@ -2,18 +2,50 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Form Pesan</title>
+  <title>Kirim Pesan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 { text-align: center; color: #333; }
+    input {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      width: 100%; padding: 10px;
+      background: #2563eb; color: white;
+      border: none; border-radius: 5px;
+      cursor: pointer; font-size: 16px;
+    }
+    button:hover { background: #1d4ed8; }
+    #status { margin-top: 10px; text-align: center; font-weight: bold; }
+    .link { display: block; text-align: center; margin-top: 15px; }
+  </style>
 </head>
 <body>
-  <h2>Kirim Pesan</h2>
-  <form id="pesanForm">
-    <input type="text" name="pesan" placeholder="Tulis pesan..." required>
-    <button type="submit">Kirim</button>
-  </form>
-
-  <p id="status"></p>
-
-  <p><a href="https://ardevaserver3.rf.gd/lihat.php" target="_blank">Lihat semua pesan</a></p>
+  <div class="card">
+    <h2>Kirim Pesan</h2>
+    <form id="pesanForm">
+      <input type="text" name="pesan" placeholder="Tulis pesan..." required>
+      <button type="submit">Kirim</button>
+    </form>
+    <p id="status"></p>
+    <a href="https://ardevaserver3.rf.gd/lihat.php" target="_blank" class="link">📜 Lihat semua pesan</a>
+  </div>
 
   <script>
     document.getElementById("pesanForm").addEventListener("submit", async function(e) {
@@ -30,10 +62,10 @@
         document.getElementById("status").innerText = result.message;
 
         if (result.status === "success") {
-          this.reset(); // <-- kosongkan form setelah berhasil
+          this.reset(); // kosongkan form setelah berhasil
         }
       } catch (error) {
-        document.getElementById("status").innerText = "Gagal mengirim pesan.";
+        document.getElementById("status").innerText = "⚠️ Gagal mengirim pesan.";
       }
     });
   </script>
